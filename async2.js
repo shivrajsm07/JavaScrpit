@@ -1,35 +1,35 @@
-let pr = new Promise(
-    function(resolve, reject)
-    {
-        setTimeout(
-            function()
-            {
-                console.log("some async task");
-                let task = true;
-            if (task == true) {
-                resolve();
-            }
-            else
-            {
-                reject();
-            }
-            }
-        ,3000);
+//  generate a random color
+
+const randomColor = function()
+{
+    const hex = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += hex[Math.floor(Math.random() * 16)];
     }
-);
-pr.then(
-    function()
+    return color;
+};
+
+let intervalId;
+const startChangingColor = function()
+{
+    if(!intervalId)
     {
-        console.log("task success : promise was completed");
+    intervalId =  setInterval(changeBgColor, 1000);
     }
-).catch(
-    function()
+
+    function changeBgColor()
     {
-        console.log("task failure : promise was rejected"); 
+        document.body.style.backgroundColor = randomColor();
     }
-).finally(
-    function()
-    {
-        console.log("task was attempted!");
-    }
-)
+};
+
+const stopChangingColor = function()
+{
+    clearInterval(intervalId);
+    intervalId = null;
+}
+
+document.querySelector('#start').addEventListener('click', startChangingColor);
+
+document.querySelector('#stop').addEventListener('click', stopChangingColor);

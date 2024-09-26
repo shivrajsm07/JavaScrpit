@@ -1,29 +1,24 @@
-new Promise(
-    function(resolve, reject)
-    {
-        console.log("Fetching user info...!");
-        // let data = "shiv@gmail.com"          ---> Approach - 1
-        // resolve(data)
-        resolve(
-            {
-                username: 'shiv',
-                email: 'shiv@gmail.com',
-                address: 'bengaluru'
-            }
-        );
-    }
-).then(
 
-    //function(data)
-    // {
-    //     console.log(data);
-        
-    // }
-    function(user)
-    {
-        console.log(user); 
-        console.log(user['username']); 
-        console.log(user['email']); 
-        console.log(user['address']); 
-    }
-)
+const insert = document.getElementById('insert');
+
+window.addEventListener('keydown', (e) => {
+  insert.innerHTML = `
+    <div class='color'>
+    <table>
+    <tr>
+      <th>Key</th>
+      <th>Keycode</th> 
+      <th>Code</th>
+    </tr>
+    <tr>
+      <td>${e.key === ' ' ? 'Space' : e.key}</td>
+      <td>${e.keyCode}</td> 
+      <td>${e.code}</td>
+    </tr>
+    
+  </table>
+    </div>
+  `;
+});
+
+//e.key === ' ' ? 'Space' : e.key
